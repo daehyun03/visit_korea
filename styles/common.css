@@ -1,0 +1,16 @@
+@import "./header.css";
+@import "./footer.css";
+
+body {
+    margin: 0;
+    padding: 0;
+    display: block;
+    font: 13px / 1.4 NotoSansKR, NotoSansJP, "돋움", Dotum, AppleGothic,
+        Sans-serif;
+    color: #666;
+    box-sizing: border-box;
+}
+
+div {
+    box-sizing: border-box;
+}
