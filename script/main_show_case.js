@@ -32,8 +32,8 @@ const data = [
     },
 ];
 
+// 카루셀 데이터를 생성합니다.
 const carousel = document.getElementById("carousel");
-
 data.forEach((item) => {
     const carouselItem = document.createElement("div");
     carouselItem.className = "carousel-item";
@@ -46,62 +46,47 @@ data.forEach((item) => {
     carousel.appendChild(carouselItem);
 });
 
+// 카루셀의 너비 및 이동거리를 설정합니다.
 let currentIndex = 0;
 const itemsToShow = 4;
 const totalPages = data.length - itemsToShow + 1;
-
 const updateCarousel = () => {
-    //TODO 동적으로 아이템의 너비를 계산하여 적용하기
-    const container = document.querySelector(".carousel-container");
-    const itemWidth = 240;
-
     const carouselItems = document.querySelectorAll(".carousel-item");
-    carouselItems.forEach((item) => {
-        item.style.width = `${itemWidth}px`;
-    });
-    const offset = currentIndex * itemWidth;
+    const itemStyle = window.getComputedStyle(carouselItems[0]);
+    const itemWidth = parseFloat(itemStyle.width);
+    const itemMarginRight = parseFloat(itemStyle.marginRight);
+    const totalItemWidth = itemWidth + itemMarginRight;
+    const offset = currentIndex * totalItemWidth;
     carousel.style.transform = `translateX(-${offset}px)`;
 };
 
-document.getElementById("prev").addEventListener("click", () => {
-    currentIndex = currentIndex > 0 ? currentIndex - 1 : 0;
-    updateCarousel();
-    togglePrevButtonVisibility();
-    toggleNextButtonVisibility();
-});
-
+// 버튼의 가시성을 조정하는 함수입니다.
+// 현재 인덱스에 따라 이전 버튼과 다음 버튼의 가시성을 조정합니다.
 const togglePrevButtonVisibility = () => {
     const prevButton = document.getElementById("prev");
     prevButton.style.visibility = currentIndex === 0 ? "hidden" : "visible";
 };
-
-document.getElementById("next").addEventListener("click", () => {
-    currentIndex =
-        currentIndex < totalPages - 1 ? currentIndex + 1 : currentIndex;
-    updateCarousel();
-    togglePrevButtonVisibility();
-    toggleNextButtonVisibility();
-});
-
 const toggleNextButtonVisibility = () => {
     const nextButton = document.getElementById("next");
     nextButton.style.visibility =
         currentIndex === totalPages - 1 ? "hidden" : "visible";
 };
 
+// pagination
+// pagination의 총 페이지 수를 설정합니다.
 const currentPageDiv = document.getElementById("pagination_current");
 const totalPageDiv = document.getElementById("pagination_total");
-
 const updatePagination = () => {
     currentPageDiv.innerHTML = currentIndex + 1;
     totalPageDiv.innerHTML = totalPages;
 };
 
+// progress bar
+// progress bar의 길이를 설정합니다.
 const barContainer = document.getElementById("bar_container");
 const bar = document.getElementById("bar");
 const barContainerWidth = barContainer.offsetWidth;
 bar.style.width = `${(barContainerWidth / totalPages) * 2}px`;
-
 const updateProgressBar = () => {
     const progress =
         (currentIndex / (totalPages - 1)) *
@@ -109,25 +94,30 @@ const updateProgressBar = () => {
     bar.style.transform = `translate3d(${progress}px, 0, 0)`;
 };
 
-// Update progress bar on navigation
+// 카루셀 이동 이벤트 리스너
 document.getElementById("prev").addEventListener("click", () => {
+    currentIndex = currentIndex > 0 ? currentIndex - 1 : 0;
+    updateCarousel();
+    togglePrevButtonVisibility();
+    toggleNextButtonVisibility();
     updateProgressBar();
     updatePagination();
 });
 document.getElementById("next").addEventListener("click", () => {
+    currentIndex =
+        currentIndex < totalPages - 1 ? currentIndex + 1 : currentIndex;
+    updateCarousel();
+    togglePrevButtonVisibility();
+    toggleNextButtonVisibility();
     updateProgressBar();
     updatePagination();
 });
 
-// Initialize progress bar
+// Initialize
 updateProgressBar();
-// Initialize pagination
 updatePagination();
-// Initialize carousel position
 updateCarousel();
-// Initialize visibility of the next button
 toggleNextButtonVisibility();
-// Initialize visibility of the prev button
 togglePrevButtonVisibility();
 
 window.addEventListener("resize", updateCarousel);
