@@ -1,0 +1,86 @@
+#main {
+    width: 980px;
+    margin: 0 auto !important;
+    padding: 130px 20px 27px 20px !important;
+    min-width: auto;
+}
+.event_title {
+    position: relative;
+    padding-right: 20px;
+}
+.event_title .area_tag {
+    padding-bottom: 0;
+}
+.event_title .area_tag .name8 {
+    padding: 5px 0 0 30px;
+    position: relative;
+    display: inline-block;
+    min-height: 28px;
+    font-size: 20px;
+    color: #666;
+}
+.event_title .area_tag .name8 .ico {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 26px;
+    height: 24px;
+    background: url(/images/fun.png) 0 0 no-repeat;
+    background-size: 26px auto;
+    text-indent: -9999px;
+}
+.event_title .area_tag h2 {
+    position: relative;
+    width: 600px;
+    padding-right: 30px;
+    box-sizing: border-box;
+    overflow: hidden;
+    font-weight: 800;
+    color: #333;
+    font-size: 36px;
+    letter-spacing: -1px;
+    word-break: keep-all;
+    margin: 0;
+}
+.event_title .area_tag .ev_tab {
+    position: absolute;
+    right: 340px;
+    top: 44px;
+}
+.event_title .area_tag .ev_tab ul {
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+.event_title .area_tag .ev_tab ul li {
+    margin-left: 10px;
+}
+.event_title .area_tag .ev_tab ul li button {
+    height: 30px;
+    padding: 0 15px;
+    border: 1px solid #e5e5e5;
+    min-width: 57px;
+    font-size: 15px;
+    border-radius: 4px;
+    letter-spacing: -1px;
+}
+.event_title .area_tag .ev_tab ul li .on {
+    color: #fff;
+    background: #666;
+    border-color: #666;
+}
+
+.wrap_content {
+    position: relative;
+    width: 100%;
+    margin-top: 24px;
+}
+.wrap_content .box_right {
+    float: right;
+    width: 340px;
+}
+.wrap_content .box_left {
+    float: left;
+    width: 600px;
+}
