@@ -279,6 +279,46 @@
 .wrap_content .box_left #event_list .event_card .popup ul li .btn_share {
     background: url(../images/share.png) no-repeat;
 }
+.wrap_content .box_left .pagination {
+    clear: both;
+    padding: 30px 0 100px;
+    text-align: center;
+    display: flex;
+    justify-self: center;
+}
+.wrap_content .box_left .pagination button {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    line-height: 30px;
+    text-align: center;
+}
+.wrap_content .box_left .pagination button.on {
+    border: 1px solid #13294b;
+    background-color: #13294b;
+    color: #fff;
+}
+.wrap_content .box_left .pagination button.next_btn {
+    margin-left: 5px;
+    background: url(../images/btn_paging_next.gif) 50% 50% no-repeat;
+    background-size: 6px auto;
+}
+.wrap_content .box_left .pagination button.prev_btn {
+    margin-right: 5px;
+    background: url(../images/btn_paging_prev.gif) 50% 50% no-repeat;
+    background-size: 6px auto;
+}
+.wrap_content .box_left .pagination button.first_btn {
+    background: url(../images/btn_paging_first.gif) 50% 50% no-repeat;
+    background-size: 12px auto;
+    border-right: 0;
+}
+.wrap_content .box_left .pagination button.last_btn {
+    background: url(../images/btn_paging_last.gif) 50% 50% no-repeat;
+    background-size: 12px auto;
+    border-left: 0;
+}
 .dimmed2 {
     content: "";
     position: fixed;

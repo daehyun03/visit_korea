@@ -126,7 +126,9 @@ function changeDashToDot(date) {
 }
 
 const event_list = document.getElementById("event_list");
-let cur_tag = "전체";
+
+// recent, popular sort
+let curTag = "전체";
 let recent = true;
 const sortButtons = document.getElementsByClassName("sort_btn");
 Array.from(sortButtons).forEach((button) => {
@@ -141,114 +143,195 @@ Array.from(sortButtons).forEach((button) => {
             recent = false;
         }
 
-        createEventCards(cur_tag);
+        createEventCards(curTag);
     });
 });
 
-function createEventCards(tag) {
+//create pagenation
+let currentPage = 1;
+const perPage = 2;
+
+function createPagination(totalItems, currentPage) {
+    const totalPages = Math.ceil(totalItems / perPage);
+    const paginationContainer = document.getElementById("pagination");
+    paginationContainer.innerHTML = "";
+
+    for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement("button");
+        btn.className = `page-btn ${i === currentPage ? "on" : ""}`;
+        btn.innerText = i;
+
+        btn.addEventListener("click", () => {
+            createEventCards(curTag, i);
+        });
+
+        paginationContainer.appendChild(btn);
+    }
+}
+
+// render pagination
+function renderPagination(currentPage, totalPages) {
+    const pagination = document.getElementById("pagination");
+    pagination.innerHTML = "";
+
+    const maxButtons = 2;
+    const currentGroup = Math.floor((currentPage - 1) / maxButtons);
+    const startPage = currentGroup * maxButtons + 1;
+    const endPage = Math.min(startPage + maxButtons - 1, totalPages);
+
+    const createBtn = (text, page, isActive = false, isDisabled = false) => {
+        const safePage = Math.max(1, Math.min(page, totalPages));
+        const btn = document.createElement("button");
+        btn.innerText = text;
+        btn.disabled = isDisabled;
+        if (isActive) btn.classList.add("active");
+        btn.addEventListener("click", () => createEventCards(curTag, safePage));
+
+        if (isActive) {
+            btn.classList.add("on");
+        }
+        return btn;
+    };
+
+    if (currentPage > 1) {
+        const firstBtn = createBtn("", 1);
+        firstBtn.classList.add("first_btn");
+        pagination.appendChild(firstBtn);
+    }
+
+    if (currentPage > 1) {
+        const prevGroupBtn = createBtn("", startPage - 1);
+        prevGroupBtn.classList.add("prev_btn");
+        pagination.appendChild(prevGroupBtn);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+        const pageBtn = createBtn(i, i, i === currentPage);
+        pagination.appendChild(pageBtn);
+    }
+
+    if (currentPage < totalPages) {
+        const nextGroupBtn = createBtn("", endPage + 1);
+        nextGroupBtn.classList.add("next_btn");
+        pagination.appendChild(nextGroupBtn);
+    }
+
+    if (currentPage < totalPages) {
+        const lastBtn = createBtn("", totalPages);
+        lastBtn.classList.add("last_btn");
+        pagination.appendChild(lastBtn);
+    }
+}
+
+// create event cards
+function createEventCards(tag, page = 1) {
     event_list.innerHTML = "";
     const dimmed = document.querySelector(".dimmed2");
-    let cnt = 0;
-    const selected_event_list = eventList.sort((a, b) => {
-        if (recent) {
-            return new Date(b.date.start) - new Date(a.date.start);
-        } else {
-            return b.view - a.view;
-        }
-    });
 
-    selected_event_list.forEach((event) => {
-        if (tag === "전체" || tag === event.status) {
-            cnt++;
-            const card = document.createElement("li");
-            card.className = "event_card";
+    //filter event list
+    const selected_event_list = eventList
+        .sort((a, b) => {
+            if (recent) {
+                return new Date(b.date.start) - new Date(a.date.start);
+            } else {
+                return b.view - a.view;
+            }
+        })
+        .filter((event) => tag === "전체" || event.status === tag);
 
-            const em = document.createElement("em");
-            const statusClass = {
-                진행중: "on",
-                종료: "end",
-                "당첨자 발표": "winner",
-            };
-            em.className = statusClass[event.status] || "";
-            em.innerText = event.status;
-            card.appendChild(em);
+    // calculate pagination
+    const start = (page - 1) * perPage;
+    const end = start + perPage;
+    const paginatedList = selected_event_list.slice(start, end);
 
-            const a = document.createElement("a");
-            a.href = `https://korean.visitkorea.or.kr/detail/event_detail.do?cotid=${event.id}`;
-            const img = document.createElement("img");
-            img.src = event.image.src;
-            img.alt = event.image.alt;
+    // total count render
+    const totalCount = document.getElementById("totalCnt");
+    if (totalCount) totalCount.innerText = `${selected_event_list.length}`;
 
-            const title = document.createElement("strong");
-            title.innerText = event.title;
+    //create event cards
+    paginatedList.forEach((event) => {
+        const card = document.createElement("li");
+        card.className = "event_card";
 
-            const date = document.createElement("span");
-            date.className = "date";
-            date.innerText = `${changeDashToDot(
-                event.date.start
-            )} ~ ${changeDashToDot(event.date.end)}`;
+        const em = document.createElement("em");
+        const statusClass = {
+            진행중: "on",
+            종료: "end",
+            "당첨자 발표": "winner",
+        };
+        em.className = statusClass[event.status] || "";
+        em.innerText = event.status;
+        card.appendChild(em);
 
-            a.appendChild(title);
-            a.appendChild(date);
-            a.appendChild(img);
-            card.appendChild(a);
+        const a = document.createElement("a");
+        a.href = `https://korean.visitkorea.or.kr/detail/event_detail.do?cotid=${event.id}`;
+        const img = document.createElement("img");
+        img.src = event.image.src;
+        img.alt = event.image.alt;
 
-            // 팝업 생성
-            const popup = document.createElement("div");
-            popup.className = "popup";
+        const title = document.createElement("strong");
+        title.innerText = event.title;
 
-            const ul = document.createElement("ul");
-            ul.className = "popup_list";
+        const date = document.createElement("span");
+        date.className = "date";
+        date.innerText = `${changeDashToDot(
+            event.date.start
+        )} ~ ${changeDashToDot(event.date.end)}`;
 
-            const li1 = document.createElement("li");
-            const link1 = document.createElement("a");
-            link1.className = "btn_fav";
-            link1.href = "#";
-            link1.innerText = "즐겨찾기";
-            li1.appendChild(link1);
-            ul.appendChild(li1);
+        a.appendChild(title);
+        a.appendChild(date);
+        a.appendChild(img);
+        card.appendChild(a);
 
-            const li2 = document.createElement("li");
-            const link2 = document.createElement("a");
-            link2.className = "btn_share";
-            link2.href = "#";
-            link2.innerText = "공유하기";
-            li2.appendChild(link2);
-            ul.appendChild(li2);
+        const popup = document.createElement("div");
+        popup.className = "popup";
 
-            popup.appendChild(ul);
-            card.appendChild(popup);
+        const ul = document.createElement("ul");
+        ul.className = "popup_list";
 
-            // 버튼
-            const btn = document.createElement("button");
-            btn.type = "button";
-            btn.className = "btn_more";
-            btn.innerText = "자세히 보기";
-            card.appendChild(btn);
+        const li1 = document.createElement("li");
+        const link1 = document.createElement("a");
+        link1.className = "btn_fav";
+        link1.href = "#";
+        link1.innerText = "즐겨찾기";
+        li1.appendChild(link1);
 
-            // 버튼 클릭 시 해당 팝업만 토글
-            btn.addEventListener("click", (e) => {
-                e.stopPropagation();
+        const li2 = document.createElement("li");
+        const link2 = document.createElement("a");
+        link2.className = "btn_share";
+        link2.href = "#";
+        link2.innerText = "공유하기";
+        li2.appendChild(link2);
 
-                // 다른 팝업 닫기
-                document.querySelectorAll(".popup.show").forEach((el) => {
-                    if (el !== popup) el.classList.remove("show");
-                });
+        ul.appendChild(li1);
+        ul.appendChild(li2);
+        popup.appendChild(ul);
+        card.appendChild(popup);
 
-                popup.classList.toggle("show");
-                dimmed.classList.toggle(
-                    "show",
-                    popup.classList.contains("show")
-                );
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "btn_more";
+        btn.innerText = "자세히 보기";
+        card.appendChild(btn);
+
+        btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+
+            document.querySelectorAll(".popup.show").forEach((el) => {
+                if (el !== popup) el.classList.remove("show");
             });
 
-            event_list.appendChild(card);
-        }
-        const totalCount = document.getElementById("totalCnt");
-        totalCount.innerText = `${cnt}`;
+            popup.classList.toggle("show");
+            dimmed?.classList.toggle("show", popup.classList.contains("show"));
+        });
+
+        event_list.appendChild(card);
     });
 
-    // dimmed 클릭 시 전체 팝업 닫기
+    // pagination render
+    const totalPages = Math.ceil(selected_event_list.length / perPage);
+    renderPagination(page, totalPages);
+
     if (dimmed) {
         dimmed.addEventListener("click", () => {
             document
@@ -259,6 +342,7 @@ function createEventCards(tag) {
     }
 }
 
+// create event tab
 const event_title = document.getElementById("event_title");
 function makeTitle(title) {
     event_title.innerText = "#" + title;
@@ -292,7 +376,7 @@ const createEventTab = () => {
             button.classList.remove("off");
             button.classList.add("on");
             makeTitle(tab.title);
-            cur_tag = tab.text;
+            curTag = tab.text;
             createEventCards(tab.text);
         });
 
@@ -307,6 +391,5 @@ const createEventTab = () => {
     evTab.appendChild(ul);
 };
 
-// Call the function to create the event tab
 createEventTab();
-createEventCards(cur_tag);
+createEventCards(curTag);
