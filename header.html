@@ -47,38 +47,133 @@
         </nav>
 
         <div class="icons">
+            <span class="input" id="placeHolder">
+                <input
+                    type="text"
+                    placeholder="어디로, 어떤 여행을 떠날 예정인가요?"
+                    title="검색"
+                    id="inp_search"
+                    autocomplete="off"
+                />
+                <a
+                    href="https://korean.visitkorea.or.kr/search/search_list.do?keyword=&area=All"
+                ></a>
+            </span>
             <img
-                src="https://korean.visitkorea.or.kr/resources/images/common/btn_header_search01.png"
-            />
-            <img
+                class="map"
                 src="https://korean.visitkorea.or.kr/resources/images/common/icon_header_map.png"
             />
             <img
+                class="profile"
                 src="https://korean.visitkorea.or.kr/resources/images/common/icon_header_profile1.png"
             />
-            <img
-                src="https://korean.visitkorea.or.kr/resources/images/common/icon_header_mlang.png"
-            />
+            <div class="lang_select">
+                <button
+                    type="button"
+                    class="lang_selector"
+                    onclick="toggleLangSelector()"
+                >
+                    <span>한국어</span>
+                </button>
+                <div class="lang_layer" onclick="toggleLangSelector()">
+                    <ul>
+                        <li>
+                            <a
+                                href="https://korean.visitkorea.or.kr/main/main.do"
+                                title="현재창"
+                                >한국어</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="https://english.visitkorea.or.kr/svc/main/index.do?utm_source=ko_visitkorea&amp;utm_medium=landing_url&amp;utm_campaign=vk_main_enu"
+                                target="_blank"
+                                title="새창"
+                                >English</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="https://japanese.visitkorea.or.kr/svc/main/index.do?utm_source=ko_visitkorea&amp;utm_medium=landing_url&amp;utm_campaign=vk_main_jpn"
+                                target="_blank"
+                                title="새창"
+                                >日本語</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="https://chinese.visitkorea.or.kr/svc/main/index.do?utm_source=ko_visitkorea&amp;utm_medium=landing_url&amp;utm_campaign=vk_main_chs"
+                                target="_blank"
+                                title="새창"
+                                >中文 ( 简体 )</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="https://big5chinese.visitkorea.or.kr/svc/main/index.do?utm_source=ko_visitkorea&amp;utm_medium=landing_url&amp;utm_campaign=vk_main_cht"
+                                target="_blank"
+                                title="새창"
+                                >中文 ( 繁體 )</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="https://german.visitkorea.or.kr/svc/main/index.do?utm_source=ko_visitkorea&amp;utm_medium=landing_url&amp;utm_campaign=vk_main_ger"
+                                target="_blank"
+                                title="새창"
+                                >Deutsch</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="https://french.visitkorea.or.kr/svc/main/index.do?utm_source=ko_visitkorea&amp;utm_medium=landing_url&amp;utm_campaign=vk_main_fre"
+                                target="_blank"
+                                title="새창"
+                                >Français</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="https://spanish.visitkorea.or.kr/svc/main/index.do?utm_source=ko_visitkorea&amp;utm_medium=landing_url&amp;utm_campaign=vk_main_spa"
+                                target="_blank"
+                                title="새창"
+                                >Español</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="https://russian.visitkorea.or.kr/svc/main/index.do?utm_source=ko_visitkorea&amp;utm_medium=landing_url&amp;utm_campaign=vk_main_rus"
+                                target="_blank"
+                                title="새창"
+                                >Pусский</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </header>
 
     <!-- 메가메뉴: hover 시 전체 표시 -->
     <div class="mega-menu">
-        <div class="mega-column">
-            <p>추천코스</p>
-            <p>AI콕콕 플래너</p>
-        </div>
-        <div class="mega-column">
-            <p>여행지</p>
-            <p>여행기사</p>
-            <p>축제</p>
-            <p>공연 / 행사</p>
-            <p>AI콕콕</p>
-            <p>여행상품</p>
-        </div>
-        <div class="mega-column">
-            <a href="/pages/event.html"><p>이벤트</p></a>
-            <p>가볼래-터</p>
+        <div class="content_box">
+            <div class="mega-column" style="color: #f5f7fa"></div>
+            <div class="mega-column">
+                <p>추천코스</p>
+                <p>AI콕콕 플래너</p>
+            </div>
+            <div class="mega-column">
+                <p>여행지</p>
+                <p>여행기사</p>
+                <p>축제</p>
+                <p>공연 / 행사</p>
+                <p>AI콕콕</p>
+                <p>여행상품</p>
+            </div>
+            <div class="mega-column">
+                <a href="/pages/event.html"><p>이벤트</p></a>
+                <p>가볼래-터</p>
+            </div>
         </div>
     </div>
 </div>
