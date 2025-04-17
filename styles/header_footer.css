@@ -1,436 +1,546 @@
-/* 공통 스타일 */
-body {
-  margin: 0;
-  font-family: 'Noto Sans KR', sans-serif;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
 .header-wrapper {
-  position: relative;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 90px;
+    z-index: 112;
+    background: #fff;
+    box-shadow: 0px 0px 10px 0px rgba(51, 51, 51, 0.2);
+    border-bottom: 1px solid #ddd;
 }
 
 .main-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 30px;
-  border-bottom: 1px solid #ddd;
-  background: white;
-  position: relative;
-  z-index: 2;
+    align-items: center;
+    background: white;
+    position: relative;
+    z-index: 2;
+}
+
+.logo {
+    position: absolute;
+    left: 60px;
+    top: 28px;
 }
 
 .logo svg {
-  height: 40px;
-  width: auto;
-  display: block;
-  fill: #000;
+    height: 40px;
+    width: auto;
+    display: block;
+    fill: #000;
 }
 
 .logo a {
-  display: inline-block;
+    display: inline-block;
+}
+
+.main-nav {
+    margin: 0 auto;
+    width: 50%;
 }
 
 .main-nav ul {
-  display: flex;
-  gap: 30px;
+    display: flex;
+    margin: 0;
+}
+
+.main-nav ul li {
+    line-height: 90px;
+    position: relative;
 }
 
 .main-nav a {
-  position: relative;
-  font-size: 18px;
-  font-weight: 500;
-  color: #333;
-  padding: 10px 5px;
-  display: block;
+    position: relative;
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+    display: block;
+    margin: 0 30px;
 }
 
 .main-nav a:hover {
-  cursor : pointer;
-  font-weight: 700;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.main-nav .selected {
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.main-nav .selected::after {
+    content: "";
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    background: #000;
+    border-radius: 100%;
+    position: absolute;
+    right: -11px;
+    top: 33px;
 }
 
 .main-nav a:hover::after {
-  content: "";
-  position: absolute;
-  top: -1px;
-  right: -1px;
-  width: 6px;
-  height: 6px;
-  background: #000;
-  border-radius: 50%;
+    content: "";
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    background: #000;
+    border-radius: 100%;
+    position: absolute;
+    right: -11px;
+    top: 33px;
+}
+
+.main-nav ul li .mega-menu {
+    line-height: normal;
 }
 
 /* 아이콘 버튼들 */
 .icons {
-  display: flex;
-  weight: 30px;
-  height: 30px;
-  gap: 15px;
+    position: absolute;
+    right: 60px;
+    top: 20px;
+    display: flex;
+    align-items: flex-end;
 }
 
 .icons:hover {
-  cursor : pointer;
+    cursor: pointer;
+}
+
+.icons .input {
+    width: 292px;
+    position: relative;
+    height: 42px;
+    margin-right: 20px;
+    padding-right: 30px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #333;
+}
+
+.icons .input input {
+    width: 100%;
+    height: 40px;
+    box-sizing: border-box;
+    font-size: 16px;
+    border: 0;
+    padding: 0 0 0 10px;
+    font-weight: 400;
+    color: #333;
+    background: none;
+}
+
+.icons .input a {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 10px;
+    text-indent: -9999px;
+    width: 24px;
+    height: 24px;
+    background: url(../images/btn_header_search.png) no-repeat;
+}
+
+.icons .map {
+    margin: 10px 10px 0 0;
+    display: inline-block;
+    width: 31px;
+    height: 31px;
+    text-indent: -9999px;
+}
+.icons .profile {
+    display: inline-block;
+    width: 31px;
+    height: 32px;
+    text-indent: -9999px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50% !important;
+    border-radius: 100%;
+}
+
+.icons .lang_select {
+    padding: 10px 0 0 10px;
+    position: relative;
+}
+
+.icons .lang_select button {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #333;
+    letter-spacing: -0.5px;
+}
+.icons .lang_select button::before {
+    content: "";
+    display: inline-block;
+    width: 29px;
+    margin-right: 7px;
+    height: 30px;
+    background: url(../images/icon_header_lang.png) no-repeat;
+}
+
+.icons .lang_select button span::after {
+    content: "";
+    display: inline-block;
+    vertical-align: 2px;
+    width: 13px;
+    height: 9px;
+    margin-left: 5px;
+    background: url(../images/icon_header_lang1.png) no-repeat;
+}
+
+.icons .lang_select .lang_layer {
+    display: none;
 }
 
 .icon {
-  border: 2px solid #444;
-  border-radius: 50%;
-  padding: 8px;
-  font-size: 16px;
-  cursor: pointer;
+    border: 2px solid #444;
+    border-radius: 50%;
+    padding: 8px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 /* 메가메뉴 (초기 상태) */
 .mega-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background: #f5f7fa;
-  padding: 30px 60px;
-  border-top: 1px solid #ddd;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  z-index: 1;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #f5f7fa;
+    padding: 30px 60px;
+    border-top: 1px solid #ddd;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    z-index: 1;
 }
 
 /* 메가메뉴 컬럼 구조 */
 .mega-menu {
-  display: none;
-  gap: 50px;
-  justify-content: center;
+    display: none;
+    gap: 50px;
+}
+.mega-menu .content_box {
+    display: flex;
+    gap: 30px;
+    width: 20%;
+    margin: 0 auto;
+    justify-content: flex-end;
 }
 
 .mega-menu .mega-column {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.mega-menu .mega-column:first-child {
-  margin-left: 300px;
+    display: flex;
+    flex-direction: column;
 }
 
 .mega-menu .mega-column p {
-  color: #555;
-  font-size: 15px;
-  margin: 0;
-  cursor: pointer;
+    color: #555;
+    font-size: 15px;
+    margin: 0;
+    cursor: pointer;
 }
 
 .mega-menu .mega-column p:hover {
-  color: #000;
-  text-decoration: underline;
+    color: #000;
+    text-decoration: underline;
 }
 
 /* hover 시 메가메뉴 보여주기 (헤더 + 메뉴 위에서도 유지됨) */
 .header-wrapper:hover .mega-menu,
 .mega-menu:hover {
-  display: flex;
+    display: block;
 }
 
 .main-footer {
-  background: #f9f9f9;
-  padding: 40px 0;
+    background: #f9f9f9;
+    padding: 40px 0;
 }
 
 .footer-inner {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0;
-  box-sizing: border-box;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .footer-banners,
 .footer-links {
-width: 100%;
-max-width: 900px;
-margin: 0 auto;
-padding: 0;
-box-sizing: border-box;
-display: flex;
-flex-wrap: wrap;
-justify-content: space-between;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
-
 .footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .footer-logos-inline img {
-  height: 28px;
-  margin-left: 10px;
-  object-fit: contain;
+    height: 28px;
+    margin-left: 10px;
+    object-fit: contain;
 }
 
 .footer-sns {
-  text-align: center;
-  margin-bottom: 25px;
+    text-align: center;
+    margin-bottom: 25px;
 }
 
 .footer-sns .img {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
 }
 
 .footer-sns .img .imgg {
-  width: 25px;
-  height: 25px
+    width: 25px;
+    height: 25px;
 }
 
 .footer-sns .img .text {
-  margin-top: 3px;
-  color: #000;
+    margin-top: 3px;
+    color: #000;
 }
 
-
 .footer-sns p {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
 }
 
 .footer-sns .sns-icons {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .footer-sns .sns-icons li {
-  color: #666;
-  font-weight: 500;
+    color: #666;
+    font-weight: 500;
 }
 
 .footer-sns .sns-icons a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #666;
-  font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #666;
+    font-weight: 500;
 }
 
 .footer-sns .sns-icons img {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: #ccc;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #ccc;
 }
 .footer-sns .sns-icons a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #666;
-  font-weight: 450;
-  transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #666;
+    font-weight: 450;
+    transition: color 0.3s;
 }
 
 .footer-sns .sns-icons img {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  transition: all 0.3s ease;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
 }
 
 .footer-sns .sns-icons .blog a:hover img {
-  content: url("https://korean.visitkorea.or.kr/resources/images/common/ico_sns1_1.png");
+    content: url("https://korean.visitkorea.or.kr/resources/images/common/ico_sns1_1.png");
 }
 
 .footer-sns .sns-icons .post a:hover img {
-  content: url("https://korean.visitkorea.or.kr/resources/images/common/ico_sns2_1.png");
+    content: url("https://korean.visitkorea.or.kr/resources/images/common/ico_sns2_1.png");
 }
 
 .footer-sns .sns-icons .facebook a:hover img {
-  content: url("https://korean.visitkorea.or.kr/resources/images/common/ico_sns3_1.png");
+    content: url("https://korean.visitkorea.or.kr/resources/images/common/ico_sns3_1.png");
 }
 
 .footer-sns .sns-icons .x a:hover img {
-  content: url("https://korean.visitkorea.or.kr/resources/images/common/ico_sns4_1.png");
+    content: url("https://korean.visitkorea.or.kr/resources/images/common/ico_sns4_1.png");
 }
 
 .footer-sns .sns-icons .kakao a:hover img {
-  content: url("https://korean.visitkorea.or.kr/resources/images/common/ico_sns5_1.png");
+    content: url("https://korean.visitkorea.or.kr/resources/images/common/ico_sns5_1.png");
 }
 
 .footer-sns .sns-icons .insta a:hover img {
-  content: url("https://korean.visitkorea.or.kr/resources/images/common/ico_sns7_1.png");
+    content: url("https://korean.visitkorea.or.kr/resources/images/common/ico_sns7_1.png");
 }
 .footer-sns .sns-icons .band a:hover img {
-  content: url("https://korean.visitkorea.or.kr/resources/images/common/ico_sns9_1.png");
+    content: url("https://korean.visitkorea.or.kr/resources/images/common/ico_sns9_1.png");
 }
 
 .footer-banners a:hover {
-  background: #f0f0f0;
-  color: #000;
+    background: #f0f0f0;
+    color: #000;
 }
 
 .footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px 20px;
-  font-size: 13px;
-  margin-bottom: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 20px;
+    font-size: 13px;
+    margin-bottom: 15px;
 }
 
 .footer-links li:first-child a {
-  color: #2c47dc;
+    color: #2c47dc;
 }
 
 .footer-links a {
-  color: #666;
-  transition: color 0.3s;
+    color: #666;
+    transition: color 0.3s;
 }
 
 .footer-links a:hover {
-  cursor : pointer;
+    cursor: pointer;
 }
 
 .footer-info {
-  text-align: left;
-  color: #888;
-  font-size: 13px;
-  line-height: 1.5;
-  margin-bottom: 20px;
+    text-align: left;
+    color: #888;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 20px;
 }
 
 .footer-logos {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
 
 .footer-logos-group {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
 }
 
 .footer-logos-group img {
-  height: 28px;
-  object-fit: contain;
+    height: 28px;
+    object-fit: contain;
 }
 .footer-swiper {
-  position: relative;
-  background: #f8f8f8;
-  padding: 15px 10px;
-  display: none;
-  overflow: hidden;
+    position: relative;
+    background: #f8f8f8;
+    padding: 15px 10px;
+    display: none;
+    overflow: hidden;
 }
 
 .footer-swiper-track {
-  display: flex;
-  gap: 10px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding: 5px 0;
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 5px 0;
 }
 
 .footer-slide {
-  flex: 0 0 auto;
-  width: 200px;
+    flex: 0 0 auto;
+    width: 200px;
 }
 
 .footer-slide img {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
 }
 
 .footer-swiper-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: white;
-  border: 1px solid #ccc;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  font-size: 16px;
-  line-height: 30px;
-  text-align: center;
-  z-index: 10;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 30px;
+    text-align: center;
+    z-index: 10;
 }
 
 .footer-swiper-btn.prev {
-  left: 5px;
+    left: 5px;
 }
 
 .footer-swiper-btn.next {
-  right: 5px;
+    right: 5px;
 }
 
 /* 모바일에서만 표시 */
 @media (max-width: 768px) {
-  .footer-swiper {
-    display: block;
-  }
+    .footer-swiper {
+        display: block;
+    }
 
-  .footer-banners {
-    display: none;
-  }
+    .footer-banners {
+        display: none;
+    }
 }
 
 .footer-banners {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  margin: 30px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin: 30px 0;
 }
 
 .footer-banners a {
-  flex: 1 1 10%;
-  display: block;
-  width: 180px;
-  height: 70px;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  overflow: hidden;
-  transition: all 0.3s ease;
+    flex: 1 1 10%;
+    display: block;
+    width: 180px;
+    height: 70px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
 }
 
 .footer-banners a img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .footer-bottom .copyright {
-  font-size: 14px;
-  color: #444;
-  white-space: nowrap;
+    font-size: 14px;
+    color: #444;
+    white-space: nowrap;
 }
 
 .footer-logos-inline {
-  display: flex;
-  gap: 15px;
-  align-items: center;
-  flex-wrap : wrap;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .footer-logos-inline:hover {
-  cursor : pointer;
+    cursor: pointer;
 }
