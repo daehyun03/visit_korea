@@ -6,6 +6,10 @@
         <title>전체 추천 여행 리스트 : 대한민국 구석구석</title>
         <link rel="stylesheet" href="/styles/common.css" />
         <link rel="stylesheet" href="/styles/event.css" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Noto+Sans+JP&display=swap"
+            rel="stylesheet"
+        />
     </head>
     <body>
         <header id="header"></header>
@@ -22,11 +26,14 @@
             <div class="wrap_content">
                 <div class="box_left">
                     <div class="total_check">
-                        <strong>총<span id="totalCnt">728</span>건</strong>
+                        <strong>총<span id="totalCnt"></span>건</strong>
                         <div class="btn_txt">
-                            <button type="button" class="on" id="1">
-                                최신순</button
-                            ><button type="button" id="3">인기순</button>
+                            <button type="button" class="sort_btn on" id="1">
+                                최신순
+                            </button>
+                            <button type="button" class="sort_btn" id="3">
+                                인기순
+                            </button>
                         </div>
                         <button type="button" class="btn_sort_help">
                             도움말
@@ -49,8 +56,26 @@
                 </div>
             </div>
         </div>
+        <div class="dimmed2"></div>
         <footer id="footer"></footer>
         <script type="module" src="/script/loader.js"></script>
         <script type="module" src="/script/event.js"></script>
+        <script>
+            document
+                .querySelector(".btn_sort_help")
+                .addEventListener("click", () => {
+                    document
+                        .querySelector(".sort_help_layer")
+                        .classList.toggle("show");
+                });
+
+            document
+                .querySelector(".sort_help_layer button")
+                .addEventListener("click", () => {
+                    document
+                        .querySelector(".sort_help_layer")
+                        .classList.remove("show");
+                });
+        </script>
     </body>
 </html>
