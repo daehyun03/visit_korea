@@ -1,0 +1,133 @@
+.main_inner {
+    width: 980px;
+    margin: 0 auto;
+    padding: 90px 0 20px 27px;
+}
+.main_inner .main_show_case {
+    background: #f4f6f8;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-bottom: 40px;
+    padding: 37px 0 50px;
+}
+.main_inner .main_show_case .inr {
+    height: 100%;
+    width: 940px;
+    margin: 0 auto;
+    position: relative;
+}
+.inr .tit_atc {
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: -0.6px;
+    color: #000;
+}
+.carousel-container {
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    position: static;
+}
+
+.carousel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    z-index: 1;
+    overflow: visible;
+}
+
+.carousel-item {
+    margin-right: 20px;
+    margin-top: 20px;
+    transition: transform 0.3s ease-in-out;
+    overflow: visible;
+}
+
+.carousel-item:hover {
+    transform: translateY(-20px);
+    overflow: visible;
+}
+
+.carousel-item img {
+    border-radius: 5px;
+}
+
+.carousel-item strong {
+    display: block;
+    margin: 12px 0 0;
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: 400;
+    color: #000;
+    overflow: hidden;
+    letter-spacing: -0.5px;
+    height: 38px;
+    word-break: keep-all;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+
+.carousel-controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+.carousel-container #prev {
+    position: absolute;
+    top: 45%;
+    text-indent: -9999px;
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    left: -50px;
+    background: url(../images/btn_slide_prev.png) no-repeat;
+}
+.carousel-container #next {
+    position: absolute;
+    top: 45%;
+    text-indent: -9999px;
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    right: -50px;
+    background: url(../images/btn_slide_next.png) no-repeat;
+}
+
+.pagination {
+    position: absolute;
+    right: 0;
+    left: auto;
+    bottom: -8px;
+    width: auto;
+    font-size: 16px;
+    font-weight: 300;
+    color: #000;
+    text-align: right;
+    z-index: 10;
+}
+
+.pagination span {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.pagination #pagination_current {
+    font-weight: 800;
+}
+
+#bar_container {
+    width: 90%;
+    margin-top: 30px;
+    bottom: 50px;
+    height: 2px;
+    background: #c3c5c6;
+}
+#bar_container #bar {
+    height: 100%;
+    background: #000;
+    transition: width 0.5s ease-in-out;
+}

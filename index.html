@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>대한민국 구석구석 - 홈</title>
+        <link rel="stylesheet" href="styles/common.css" />
+        <link rel="stylesheet" href="styles/header_footer.css" />
+        <link rel="stylesheet" href="styles/main_show_case.css" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Noto+Sans+JP&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <header id="header"></header>
+        <div id="main">
+            <div class="main_inner">
+                <div class="main_show_case">
+                    <div class="main_show_case_inner">
+                        <div class="inr">
+                            <h3 class="tit_atc">함께 떠나는 힐링테마 여행</h3>
+                            <div class="carousel-container">
+                                <div class="carousel" id="carousel"></div>
+                                <button id="prev"></button>
+                                <button id="next"></button>
+                                <div class="pagination">
+                                    <span id="pagination_current"></span>
+                                    /
+                                    <span id="pagination_total"></span>
+                                </div>
+                                <div id="bar_container">
+                                    <div id="bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dimmed"></div>
+        <footer id="footer"></footer>
+        <script type="module" src="/script/loader.js"></script>
+        <script type="module" src="/script/main_show_case.js"></script>
+    </body>
+</html>

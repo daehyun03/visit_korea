@@ -1,0 +1,32 @@
+@import "./header_footer.css";
+
+body {
+    margin: 0;
+    padding: 0;
+    display: block;
+    font: 13px/1.4 "Noto Sans KR", "Noto Sans JP", "돋움", Dotum, AppleGothic,
+        Sans-serif;
+    color: #666;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+div {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: #666;
+    cursor: pointer;
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
