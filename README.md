@@ -27,9 +27,19 @@
 - **Github Flow** 전략 사용
 - **main, feature** 브랜치
 
----
-
 **Branch Naming**
 
 - **feature/{페이지} 형식**
 - 예시 : `feature/Home, feature/Area`
+
+## 5️⃣ 구현 화면
+
+- **홈 화면**
+  ![홈(GIF)](https://github.com/user-attachments/assets/d730abf5-d951-4062-9c9b-26b6f5ba86c0)
+
+- **지역 화면**
+  ![지역페이지(GIF)](https://github.com/user-attachments/assets/de44beea-28d5-432a-a7f2-999a218b39b1)
+
+- **이벤트 화면**
+  ![이벤트(GIF)](https://github.com/user-attachments/assets/8511d314-a903-45b0-ae03-31adc54a788c)
+
