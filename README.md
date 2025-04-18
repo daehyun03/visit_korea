@@ -10,6 +10,7 @@
 
 | **김대현** | **김민지** |
 | --- | --- |
+| <img src="https://github.com/user-attachments/assets/b95093bd-abdf-48c8-b4a0-12449de7dd7d" width="100" height="100"/> | <img src="https://github.com/user-attachments/assets/0efc19d4-2aee-4d8e-8fed-e5bc54cdc878" width="100" height="100"/> |
 | [@daehyun03](https://github.com/daehyun03) | [@minjgziii](https://github.com/minjgziii) |
 
 ## **3️⃣ Git merge 원칙**
