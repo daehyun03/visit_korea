@@ -1,5 +1,5 @@
 # 📍 [대한민국 구석구석](https://korean.visitkorea.or.kr/main/main.do) 클론코딩
-<img width="1455" alt="스크린샷 2025-04-15 오후 3 48 09" src="https://github.com/user-attachments/assets/b05add36-9e3d-486e-8167-c26fbbe7fdc8" />
+<img width="1455" alt="스크린샷 2025-04-18 오후 1 25 19" src="https://github.com/user-attachments/assets/ee910b5b-0259-4c82-8df4-b9f0d86092d8" />
 
 
 ## 1️⃣ 기술 스택
@@ -36,11 +36,12 @@
 ## 5️⃣ 구현 화면
 
 - **홈 화면**
-  ![홈(GIF)](https://github.com/user-attachments/assets/d730abf5-d951-4062-9c9b-26b6f5ba86c0)
+  ![홈(최종gif)](https://github.com/user-attachments/assets/758e0f13-46c6-428e-bc08-97c49236bf6c)
 
 - **지역 화면**
-  ![지역페이지(GIF)](https://github.com/user-attachments/assets/de44beea-28d5-432a-a7f2-999a218b39b1)
+  ![지역(gif최종)](https://github.com/user-attachments/assets/ac6dfe63-facc-44a1-874f-9fd6d63a5f51)
 
 - **이벤트 화면**
-  ![이벤트(GIF)](https://github.com/user-attachments/assets/8511d314-a903-45b0-ae03-31adc54a788c)
+  ![이벤트(최종gif)](https://github.com/user-attachments/assets/37258331-a64d-46c3-a0e0-1086d39d336f)
+
 
