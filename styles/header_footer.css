@@ -130,7 +130,7 @@
     background: none;
 }
 
-.icons .input a {
+.icons .input #searchBtn2 {
     display: inline-block;
     position: absolute;
     right: 0;
@@ -139,6 +139,17 @@
     width: 24px;
     height: 24px;
     background: url(../images/btn_header_search.png) no-repeat;
+}
+
+.icons .input #searchBtn {
+    display: inline-block;
+    position: absolute;
+    right: -5px;
+    top: 10px;
+    text-indent: -9999px;
+    width: 31px;
+    height: 31px;
+    background: url(../images//btn_header_search01.png) no-repeat;
 }
 
 .icons .map {

@@ -29,6 +29,36 @@ document.addEventListener("DOMContentLoaded", async () => {
         menu.addEventListener("mouseenter", showDimmed);
         menu.addEventListener("mouseleave", hideDimmed);
     });
+
+    const searchBox = document.getElementById("placeHolder");
+
+    const handleResize = () => {
+        if (window.innerWidth > 1650) {
+            searchBox.innerHTML = `<input
+                    type="text"
+                    placeholder="어디로, 어떤 여행을 떠날 예정인가요?"
+                    title="검색"
+                    id="inp_search"
+                    autocomplete="off"
+                />
+                <a id="searchBtn2"
+                    href="https://korean.visitkorea.or.kr/search/search_list.do?keyword=&area=All"
+                ></a>
+            `;
+            searchBox.style.borderBottom = "1px solid #333";
+        } else {
+            searchBox.innerHTML = `
+                <a id="searchBtn"
+                    href="https://korean.visitkorea.or.kr/search/search_list.do?keyword=&area=All"
+                ></a>
+            `;
+            searchBox.style.borderBottom = "none";
+        }
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
 });
 
 const updateSelectedNav = () => {
