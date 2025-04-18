@@ -31,6 +31,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     const searchBox = document.getElementById("placeHolder");
+    const lang_selector = document.getElementById("lang_selector");
+    const langLayer = document.querySelector(".lang_layer");
 
     const handleResize = () => {
         if (window.innerWidth > 1650) {
@@ -46,6 +48,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 ></a>
             `;
             searchBox.style.borderBottom = "1px solid #333";
+            lang_selector.innerHTML = `<span>한국어</span>`;
+            langLayer.classList.remove("small");
         } else {
             searchBox.innerHTML = `
                 <a id="searchBtn"
@@ -53,8 +57,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                 ></a>
             `;
             searchBox.style.borderBottom = "none";
+            lang_selector.innerHTML = ``;
+            langLayer.classList.add("small");
         }
     };
+
+    lang_selector.addEventListener("click", () => {
+        langLayer.classList.toggle("show");
+    });
 
     handleResize();
 

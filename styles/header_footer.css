@@ -281,6 +281,32 @@
 
 .icons .lang_select .lang_layer {
     display: none;
+    padding: 12px 10px;
+    background: #fff;
+    width: 123px;
+    border-radius: 8px;
+    position: absolute;
+    left: 38px;
+    top: 45px;
+    box-shadow: 0px 2px 8px rgba(99, 99, 99, 0.2);
+}
+.icons .lang_select .lang_layer.small {
+    left: -73px;
+}
+
+.icons .lang_select .lang_layer.show {
+    display: block;
+}
+
+.icons .lang_select .lang_layer ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.icons .lang_select .lang_layer ul li:not(:first-child) {
+    margin-top: 5px;
+    cursor: pointer;
 }
 
 .icon {
