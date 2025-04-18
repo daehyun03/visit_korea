@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>전국 축제 캘린더</title>
+    <link rel="stylesheet" href="styles/header_footer.css" />
+    <link rel="stylesheet" href="styles/common.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <style>
+        #main {
+            width: 100%;
+            margin: 0 auto !important;
+            padding-top: 100px;
+            min-width: auto;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Noto Sans KR', sans-serif;
+            background: #fff;
+        }
+
+        .section-header {
+            padding: 30px 0 10px;
+        }
+
+        .section-header-with-button {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 160px;
+            max-width: 1200px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+
+        .section-header-with-button h2 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 500;
+        }
+
+        .section-header-with-button h2 strong {
+            font-weight: 700;
+        }
+
+        .more-btn img {
+            width: 12px;
+            height: 12px;
+            margin-bottom: 25px;
+            margin-right: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 28px;
+            font-weight: 500;
+            text-align: left;
+            padding-left: 40px;
+        }
+
+        .section-header h2 strong {
+            font-weight: 700;
+        }
+
+        .month-divider {
+            position: relative;
+            margin: 0 0 30px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+            box-sizing: border-box;
+        }
+
+        .month-divider hr {
+            flex: none;
+            width: calc(100% - 120px);
+            margin: 0 auto;
+            border: none;
+            border-top: 0.5px solid #ccc;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 0;
+        }
+
+        .month-badge {
+            margin-left: 115px;
+        }
+
+        .month-badge.right {
+            margin-right: 150px;
+        }
+
+        .month-badge,
+        .month-badge.right {
+            position: relative;
+            background: white;
+            padding: 3px 12px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 12px;
+            color: #555;
+            z-index: 1;
+        }
+
+
+        .calendar-wrapper {
+            text-align: center;
+            padding: 40px 0 20px;
+        }
+
+        .calendar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            /* 중앙 정렬의 생명선 */
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+
+        .calendar-inner h2 {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .calendar-inner h2 strong {
+            font-weight: 800;
+        }
+
+        .calendar-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* 중앙 정렬 */
+            gap: 18px;
+            margin: 0 auto;
+        }
+
+        .calendar-bar button {
+            border: none;
+            background: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .calendar-days {
+            display: flex;
+            gap: 18px;
+            margin: 0 20px;
+            overflow-x: auto;
+        }
+
+        .day {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .day .num {
+            font-size: 16px;
+            font-weight: 500;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .day:hover .num {
+            background: #eee;
+            /* 회색 배경 */
+            border-radius: 50%;
+        }
+
+
+        .day.today .num {
+            background: #2b2b2b;
+            color: #fff;
+            border-radius: 50%;
+        }
+
+        .day .label {
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .day.sat {
+            color: #2c47dc;
+        }
+
+        .day.sun {
+            color: #f14444;
+        }
+
+        .swiper {
+            padding: 40px 0;
+            background: #333;
+        }
+
+        .swiper-wrapper {
+            align-items: center;
+        }
+
+        .swiper-slide {
+            width: 600px;
+            height: 300px;
+            background: #fff url('https://korean.visitkorea.or.kr/resources/images/submain/festival_calendar_pattern.png') 500px 23px no-repeat;
+            border-radius: 5px;
+            display: flex;
+            gap: 20px;
+            padding: 25px;
+            box-sizing: border-box;
+            align-items: stretch;
+            gap: 30px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            opacity: 0.3;
+            transform: scale(0.95);
+            transition: all 0.4s ease;
+        }
+
+        .slide-content::before {
+            content: '';
+            position: absolute;
+            left: -7px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: repeating-linear-gradient(to bottom,
+                    #bbb,
+                    #bbb 5px,
+                    transparent 5px,
+                    transparent 10px);
+        }
+
+
+        .swiper-slide.swiper-slide-active {
+            opacity: 1;
+            transform: scale(1);
+            z-index: 2;
+        }
+
+        .swiper-slide::before,
+        .swiper-slide::after {
+            content: '';
+            display: block;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #333;
+            position: absolute;
+            transform: translateX(-50%);
+            z-index: 5;
+            left: 230px;
+        }
+
+        .swiper-slide::before {
+            top: -8px;
+        }
+
+        .swiper-slide::after {
+            bottom: -8px;
+        }
+
+        .swiper-slide img {
+            width: 180px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .slide-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .slide-content h3 {
+            margin: 0 0 10px;
+            font-size: 20px;
+            color: #000;
+        }
+
+        .slide-content p {
+            font-size: 14px;
+            color: #444;
+            margin: 4px 0;
+        }
+
+        .info-grid {
+            display: flex;
+            gap: 40px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .info-item .label {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 4px;
+        }
+
+        .info-item .text {
+            font-size: 14px;
+            font-weight: 500;
+            color: #000;
+        }
+
+        .btns {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btns a {
+            padding: 8px 14px;
+            font-size: 13px;
+            text-decoration: none;
+            border-radius: 6px;
+            background: #333;
+            color: #fff;
+        }
+
+        .btns a.map-link {
+            background: #fff;
+            color: #000;
+            border: 1px solid #000;
+        }
+
+        .arrow-btn {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .arrow-btn img {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+
+
+        .swiper-pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex: 1;
+            /* 중심에서 공간을 먹도록! */
+        }
+
+        .swiper-pagination-bullet {
+            width: 7px;
+            height: 7px;
+            background-color: transparent;
+            border: 1px solid #fff;
+            border-radius: 50%;
+            margin: 0 5px;
+            transition: all 0.3s;
+        }
+
+        .swiper-pagination-bullet-active {
+            background-color: #fff;
+            width: 30px;
+            border-radius: 20px;
+        }
+
+        .swiper-footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            position: relative;
+            padding: 0 20px;
+        }
+
+        .swiper-button-prev-custom,
+        .swiper-button-next-custom {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding-left: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+            /* 공간 확보용 */
+        }
+
+        .swiper-button-prev-custom {
+            padding-left: 600px;
+        }
+
+        .swiper-button-next-custom {
+            padding-right: 150px;
+        }
+
+
+        .swiper-button-prev-custom img,
+        .swiper-button-next-custom img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .calendar-link {
+            color: #fff;
+            font-size: 16px;
+            text-decoration: none;
+            margin-left: auto;
+            white-space: nowrap;
+            font-weight: 500;
+            display: flex;
+            padding-right: 100px;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header"></header>
+    <div id="main">
+        <div class="calendar-wrapper">
+            <div class="calendar-inner">
+                <div class="section-header-with-button">
+                    <h2><strong>전국</strong> 축제·행사 어디까지 가봤니?</h2>
+                    <a href="#" class="more-btn" title="더보기">
+                        <img src="https://korean.visitkorea.or.kr/resources/images/submain/ico_moreplus.png"
+                            alt="더보기 아이콘">
+                    </a>
+                </div>
+                <div class="month-divider">
+                    <hr />
+                    <span class="month-badge">2025.4</span>
+                    <span class="month-badge right">2025.5</span>
+                </div>
+                <div class="calendar-bar">
+                    <button class="arrow-btn prev" onclick="changeDate(-14)">
+                        <img src="https://korean.visitkorea.or.kr/resources/images/submain/btn_calendar_prev.png"
+                            alt="이전">
+                    </button>
+                    <div class="calendar-days" id="calendar-days"></div>
+                    <button class="arrow-btn next" onclick="changeDate(14)">
+                        <img src="https://korean.visitkorea.or.kr/resources/images/submain/btn_calendar_prev.png"
+                            style="transform: rotate(180deg);" alt="다음">
+                    </button>
+                    <button class="arrow-btn prev">
+                        <img src="https://korean.visitkorea.or.kr/resources/images/submain/btn_calendar.png" alt="캘린더">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper" id="swiper-wrapper"></div>
+
+            <!-- 페이지네이션 + 화살표 컨테이너 -->
+            <div class="swiper-footer">
+                <button class="swiper-button-prev-custom">
+                    <img src="images/arrow-left.png" alt="이전">
+                </button>
+                <div class="swiper-pagination"></div>
+                <button class="swiper-button-next-custom">
+                    <img src="images/arrow-left.png" style="transform: rotate(180deg);" alt="다음">
+                </button>
+                <a href="#" class="calendar-link">축제·행사달력 보러가기 &gt;</a>
+            </div>
+        </div>
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+        <script>
+            const events = [
+                {
+                    title: "양평모두봄날",
+                    location: "경기 양평군",
+                    period: "2025. 3. 15. ~ 2025. 4. 19.",
+                    address: "경기도 양평군 단월면 곱다니길 55-2",
+                    image: "https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=8d57ec26-2220-4268-9e26-11dc6ae4ccdc",
+                    start: "2025-03-15",
+                    end: "2025-04-19"
+                },
+                {
+                    title: "창덕궁 달빛기행",
+                    location: "서울 종로구",
+                    period: "2025. 4. 10. ~ 2025. 4. 26.",
+                    address: "서울특별시 종로구 율곡로 99 (와룡동)",
+                    image: "https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=dc1968f6-e1c1-4353-95bf-15544d2b8d78",
+                    start: "2025-04-10",
+                    end: "2025-04-26"
+                },
+                {
+                    title: "생거진천 농다리축제",
+                    location: "충북 진천군",
+                    period: "2025. 4. 5. ~ 2025. 5. 1.",
+                    address: "충청북도 진천군 진천읍 문화로 79",
+                    image: "https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=aa8b807e-cbdb-4ce6-80d6-48550fc964ef",
+                    start: "2025-04-05",
+                    end: "2025-05-01"
+                },
+                {
+                    title: "고흥 녹동항 드론쇼",
+                    location: "전남 고흥군",
+                    period: "2025. 4. 12. ~ 2025. 4. 25.",
+                    address: "전라남도 고흥군 도양읍 봉암리",
+                    image: "https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=52544d1b-ae05-4e36-8691-ca9a212c2155",
+                    start: "2025-04-12",
+                    end: "2025-04-25"
+                },
+                {
+                    title: "천리포수목원 봄축제",
+                    location: "충남 태안군",
+                    period: "2025. 3. 28. ~ 2025. 5. 31.",
+                    address: "충청남도 태안군 소원면 천리포1길 187",
+                    image: "https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=cbc9340c-0cb3-43fd-81dd-8c01d86d01c7",
+                    start: "2025-03-28",
+                    end: "2025-05-31"
+                },
+                {
+                    title: "진천 농다리축제",
+                    location: "충북 진천군",
+                    period: "2025. 4. 5. ~ 2025. 4. 28.",
+                    address: "충청북도 진천군 진천읍 문화로 79",
+                    image: "https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=aa8b807e-cbdb-4ce6-80d6-48550fc964ef",
+                    start: "2025-04-05",
+                    end: "2025-04-28"
+                }
+            ];
+
+            const calendarContainer = document.getElementById('calendar-days');
+            const swiperWrapper = document.getElementById('swiper-wrapper');
+            let swiper;
+            const today = new Date();
+            let startDate = new Date();
+            let selectedDate = formatDate(today);
+
+            function formatDate(date) {
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+                return `${year}-${month}-${day}`;
+            }
+
+
+            let selectedDateStr = formatDate(today);
+
+            function renderCalendar() {
+                calendarContainer.innerHTML = "";
+                for (let i = 0; i < 14; i++) {
+                    const day = new Date(startDate);
+                    day.setDate(startDate.getDate() + i);
+                    const num = day.getDate();
+                    const dayIndex = day.getDay();
+                    const label = ["일", "월", "화", "수", "목", "금", "토"][dayIndex];
+                    const dateStr = formatDate(day);
+
+                    const div = document.createElement("div");
+                    div.className = `day ${label === "토" ? "sat" : ""} ${label === "일" ? "sun" : ""}`;
+
+                    if (dateStr === selectedDateStr) {
+                        div.classList.add("today");
+                    }
+
+                    div.innerHTML = `
+            <div class="num">${num}</div>
+            <div class="label">${dateStr === formatDate(today) ? "오늘" : label}</div>
+        `;
+
+                    div.onclick = () => {
+                        selectedDateStr = dateStr; // 선택한 날짜 업데이트
+                        renderCalendar();          // 다시 렌더링
+                        filterEvents(dateStr);     // 해당 날짜 행사 필터
+                    };
+
+                    calendarContainer.appendChild(div);
+                }
+            }
+
+            function parseDateLocal(dateStr) {
+                const [year, month, day] = dateStr.split("-").map(Number);
+                return new Date(year, month - 1, day);
+            }
+
+            function parseDateLocal(dateStr) {
+                // "2025-04-18" → [2025, 04, 18]
+                const [year, month, day] = dateStr.split("-").map(Number);
+                return new Date(year, month - 1, day);  // ← 이게 진짜 로컬 날짜
+            }
+
+            function filterEvents(dateStr) {
+                swiperWrapper.innerHTML = "";
+
+                const selectedDate = parseDateLocal(dateStr);
+
+                const matched = events.filter(e => {
+                    const startDate = parseDateLocal(e.start);
+                    const endDate = parseDateLocal(e.end);
+
+                    const isInRange = selectedDate >= startDate && selectedDate <= endDate;
+
+                    return isInRange;
+                });
+
+                matched.sort(() => Math.random() - 0.5);
+
+                matched.forEach((event, i) => {
+                    const slide = document.createElement("div");
+                    slide.className = "swiper-slide" + (i === 1 ? " next-preview" : "");
+                    slide.innerHTML = `
+            <img src="${event.image}" alt="${event.title}">
+            <div class="slide-content">
+                <div>
+                    <h3>${event.title}</h3>
+                    <p><strong>${event.location}</strong></p>
+                    <br><br><br>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <p class="label">기간</p>
+                            <p class="text">${event.period.replace(" ~ ", " ~<br>")}</p>
+                        </div>
+                        <div class="info-item">
+                            <p class="label">장소</p>
+                            <p class="text">${event.address}</p>
+                        </div>
+                    </div>
+                    <div class="btns">
+                        <a href="#">바로가기</a>
+                        <a href="https://map.kakao.com/?q=${encodeURIComponent(event.address)}" target="_blank" class="map-link">길찾기</a>
+                    </div>
+                </div>
+            </div>
+        `;
+                    swiperWrapper.appendChild(slide);
+                });
+
+                swiper.update();
+                swiper.slideTo(0);
+            }
+
+
+            function changeDate(diff) {
+                startDate.setDate(startDate.getDate() + diff);
+                renderCalendar();
+            }
+
+            window.onload = () => {
+                renderCalendar();
+                swiper = new Swiper(".mySwiper", {
+                    slidesPerView: "auto",
+                    centeredSlides: true,
+                    spaceBetween: 20,
+                    pagination: {
+                        el: ".swiper-pagination",
+                        clickable: true,
+                    },
+                    navigation: {
+                        nextEl: ".swiper-button-next-custom",  // ➡️ 버튼
+                        prevEl: ".swiper-button-prev-custom",  // ⬅️ 버튼
+                    },
+                });
+
+                filterEvents(formatDate(today));
+            };
+        </script>
+    </div>
+    <footer id="footer"></footer>
+    <script type="module" src="/script/loader.js"></script>
+</body>
+
+</html>
