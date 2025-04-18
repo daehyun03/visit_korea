@@ -9,6 +9,26 @@ document.addEventListener("DOMContentLoaded", async () => {
     await loadComponent("#header", "/header.html");
     await loadComponent("#footer", "/footer.html");
     updateSelectedNav();
+
+    const headerWrapper = document.querySelector(".header-wrapper");
+    const megaMenus = document.querySelectorAll(".mega-menu");
+    const dimmed = document.querySelector(".dimmed");
+
+    const showDimmed = () => {
+        if (dimmed) dimmed.style.display = "block";
+    };
+
+    const hideDimmed = () => {
+        if (dimmed) dimmed.style.display = "none";
+    };
+
+    headerWrapper.addEventListener("mouseenter", showDimmed);
+    headerWrapper.addEventListener("mouseleave", hideDimmed);
+
+    megaMenus.forEach((menu) => {
+        menu.addEventListener("mouseenter", showDimmed);
+        menu.addEventListener("mouseleave", hideDimmed);
+    });
 });
 
 const updateSelectedNav = () => {
